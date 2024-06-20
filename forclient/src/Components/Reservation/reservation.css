@@ -1,0 +1,14 @@
+
+ .reservation{
+    background: rgb(97,111,142);
+    background: linear-gradient(90deg, rgba(97,111,142,1) 94%, rgba(25,72,89,1) 100%);
+}   
+
+.cart {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    justify-items: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 90rem
+}
