@@ -5,9 +5,10 @@ const {isAuthenticated} = require('../Middlewares/isAuthOrNot')
 const auth = express.Router ()
 
 
+
 auth.post('/SignUp', signUpValidation , isValid , authSignUp)
  
-
+    
 auth.post('/SignIn' , signInValidation , isValid , authSignIn)
 
 auth.get('/current', isAuthenticated, (req,res)=>res.send({user:req.user}))

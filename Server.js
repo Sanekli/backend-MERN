@@ -35,7 +35,7 @@ async function initial() {
           description: "furnished apartment living room with 3 bedrooms (2 children's bedrooms and a couple bedroom), 2 bathrooms, well-equipped kitchen with a sea view terrace ",
           price: "159,00€",
           duration: "full day option",
-          url_images: 'https://scontent.xx.fprismicbcdn.net/v/t1.15752-9/286120913_1653091461724468_3542625954577429628_n.jpg?stp=dst-jpg_s403x403&_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=IxrFqFQYGg0AX9eLZp8&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKGxhYMNDEz2wIzcL1lX7R5zpsYq49dGU2JsREmQ09GjA&oe=631123FB',
+          url_images: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/251077616.jpg?k=8804e63bf7423cad58ee3194c5d198b90f176c1938c07a20317a00234078d0ca&o=&hp=1',
         },
         {
           title: "dar rim",

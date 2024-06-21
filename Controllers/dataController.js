@@ -30,23 +30,25 @@ console.log(error.toString())
 }
 
 exports.authSignIn = async (req, res) => {
-    const {email , password} = req.body
+    const { email, password } = req.body;
     try {
-        const find = await registerSchema.findOne ({email :email})
-        if (!find) 
-        res.status(400).send({msg : 'user not exist'})
-      const  matchinPassword = bcrypt.compareSync(password, find.password);
-      if (!matchinPassword) {
-          res.status(400).send({msg : 'bad credentials'})
-      }
-      const userID = {id:find._id}
-      const token = jwt.sign(userID, process.env.SECRET_OR_KEY);
-      res.status(200).send({msg : "login successfully", token})
+        const user = await registerSchema.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ msg: 'User does not exist' });
+        }
+        const isMatch = bcrypt.compareSync(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ msg: 'Invalid credentials' });
+        }
+        const userID = { id: user._id };
+        const token = jwt.sign(userID, process.env.SECRET_OR_KEY);
+        return res.status(200).json({ msg: 'Login successful', token });
     } catch (error) {
-        res.status(400).send({msg :'bad credentials'})
-        
+        console.error(error.message);
+        return res.status(500).json({ msg: 'Server error' });
     }
-}
+};
+
 
 exports.AddingProducts = async (req, res)  => {
     

@@ -18,25 +18,24 @@ History('/Login')
 }
 
 
-export const SignIn = (userData,History) => async (dispatch) => {
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*' 
+export const SignIn = (userData, history) => async (dispatch) => {
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     try {
-        const SignInUsers = await axios.post('http://localhost:5000/SignIn',  userData )
-        dispatch(
-{            type : SIGNIN , 
-            payload : SignInUsers.data
-})
-dispatch(CurrentUser(SignInUsers.data.token))
-setTimeout(() => {
-    window.location.replace(window.location.protocol+ '//' +window.location.host);
-}, 500);
-History('/')
-
+        const SignInUsers = await axios.post('http://localhost:5000/SignIn', userData);
+        dispatch({
+            type: 'SIGNIN_SUCCESS',
+            payload: SignInUsers.data
+        });
+        dispatch(CurrentUser(SignInUsers.data.token));
+        setTimeout(() => {
+            window.location.replace(window.location.protocol + '//' + window.location.host);
+        }, 500);
+        history('/');
     } catch (error) {
-        console.log(error)
+        console.error('Login error:', error.response.data.msg); 
+        throw error; 
     }
-}
-
+};
 
 export const CurrentUser = (token) => async (dispatch) => {
     const config={  

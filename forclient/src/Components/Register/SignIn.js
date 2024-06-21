@@ -9,12 +9,18 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (email === '' || password === '') {
       alert('Invalid login. Please try again');
     } else {
-      dispatch(signInAction({ email, password }, navigate));
+      try {
+        await dispatch(signInAction({ email, password }, navigate));
+      } catch (err) {
+        setError(err.response.data.msg);
+        alert(err.response.data.msg); // Display alert with error message
+      }
     }
   };
 
@@ -51,6 +57,7 @@ function Login() {
             <input type="submit" className="submit-btn" value="Submit" />
           </div>
         </form>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <Link to="/SignUp"><h6 className="signup-redirect">Create an account?</h6></Link>
       </section>
     </div>
