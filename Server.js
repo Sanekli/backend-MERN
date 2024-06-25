@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const connectDB = require('./Config/connectDB');
 const app = express();
-const auth = require('./Routes/routes');
+const {auth, product} = require('./Routes/routes');
 const PrivateProduct = require('./Models/Product');
 const RegisterSchema = require('./Models/models');
 const cors = require('cors');
@@ -12,7 +12,8 @@ const bcrypt = require('bcrypt');
 connectDB();
 app.use(cors());
 app.use(express.json());
-app.use('/', auth);
+app.use('/api/auth', auth);
+app.use('/api/product', product);
 
 async function initial() {
   const userIsAdmin = await RegisterSchema.findOne({ role: 'admin' });
