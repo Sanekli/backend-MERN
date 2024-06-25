@@ -3,6 +3,7 @@ const {authSignUp,authSignIn, AddingProducts, displayingProducts,displayingOnePr
 const {isValid ,signUpValidation ,signInValidation } = require ('../Middlewares/Validator')
 const {isAuthenticated} = require('../Middlewares/isAuthOrNot')
 const auth = express.Router ()
+const product = express.Router()
 
 
 
@@ -13,19 +14,19 @@ auth.post('/SignIn' , signInValidation , isValid , authSignIn)
 
 auth.get('/current', isAuthenticated, (req,res)=>res.send({user:req.user}))
 
-auth.post('/addingNewProduct' ,AddingProducts)
+product.post('/addingNewProduct' ,AddingProducts)
 
-auth.get('/listNewProduct',displayingProducts)
+product.get('/listNewProduct',displayingProducts)
 
-auth.get('/listNewProduct/:id',displayingOneProduct) 
+product.get('/listNewProduct/:id',displayingOneProduct) 
 
-auth.delete('/deletePosts/:id', deleteProduct) 
+product.delete('/deletePosts/:id', deleteProduct) 
 
-auth.get('/listNewReservation', displayingReservation)
+product.get('/listNewReservation', displayingReservation)
 
-auth.post('/addingNewReservation' , AddingReservation)
-
-
+product.post('/addingNewReservation' , AddingReservation)
 
 
-module.exports = auth ;  
+
+
+module.exports = {auth, product,} ;  
