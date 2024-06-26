@@ -127,3 +127,18 @@ exports.deleteProduct = async (req, res)  => {
     }
 }
 
+exports.deleteReservation = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedReservation = await Reservation.findByIdAndDelete(id);
+        if (!deletedReservation) {
+            return res.status(404).send({ msg: 'Reservation not found' });
+        }
+        res.status(200).send({ msg: 'Reservation deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting reservation:', error.message);
+        res.status(500).send({ msg: 'Failed to delete reservation', error: error.message });
+    }
+};
+
+
