@@ -1,5 +1,5 @@
 const express = require('express')
-const {authSignUp,authSignIn, AddingProducts, displayingProducts,displayingOneProduct,deleteProduct, displayingReservation, AddingReservation} = require('../Controllers/dataController')
+const {authSignUp,authSignIn, AddingProducts, displayingProducts,displayingOneProduct,deleteProduct, displayingReservation, AddingReservation, deleteReservation} = require('../Controllers/dataController')
 const {isValid ,signUpValidation ,signInValidation } = require ('../Middlewares/Validator')
 const {isAuthenticated} = require('../Middlewares/isAuthOrNot')
 const auth = express.Router ()
@@ -26,7 +26,7 @@ product.get('/listNewReservation', displayingReservation)
 
 product.post('/addingNewReservation' , AddingReservation)
 
-
+product.delete('/deleteReservation/:id', deleteReservation);
 
 
 module.exports = {auth, product,} ;  
